@@ -1,6 +1,5 @@
 def read_log_lines(filepath):
-    with open(filepath, 'r') as file:
-        return [line.strip() for line in file]
+    pass #TODO
 
 
 def parse_line(line):
@@ -13,17 +12,12 @@ def parse_line(line):
         'message': 'Started processing job 123'
     }
     """
-    line_parts = line.split("] ")
-    timestamp = line_parts[0][1:]
-    line_parts2 = line_parts[1].split(" - ")
-    type_text = line_parts2[0]
-    message = line_parts2[1]
-    return {"timestamp": timestamp, "type": type_text, "message": message}
+    pass #TODO
 
 
 def filter_errors(log_entries):
     """Takes a list of parsed log entries and returns only those with type 'ERROR'."""
-    return [entry for entry in log_entries if entry["type"] == "ERROR"]
+    pass #TODO
 
 
 def main():
