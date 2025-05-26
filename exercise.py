@@ -1,23 +1,31 @@
 def read_log_lines(filepath):
-    pass #TODO
+    with open(filepath, 'r') as f:
+        return [line.strip() for line in f if line.strip()]
 
 
 def parse_line(line):
-    """Parse a single log line into a dictionary with 'timestamp', 'type', and 'message' keys.
-    Example input: '[2025-05-26 10:00:00] INFO - Started processing job 123'
-    Example output:
-    {
-        'timestamp': '2025-05-26 10:00:00',
-        'type': 'INFO',
-        'message': 'Started processing job 123'
-    }
-    """
-    pass #TODO
+    """Parse a single log line into a dictionary with 'timestamp', 'type', and 'message' keys."""
+    # Example: '[2025-05-26 10:00:00] INFO - Started processing job 123'
+    import re
+    match = re.match(r'\[(.*?)\]\s+(\w+)\s*-\s*(.*)', line)
+    if match:
+        timestamp, log_type, message = match.groups()
+        return {
+            'timestamp': timestamp,
+            'type': log_type,
+            'message': message
+        }
+    else:
+        return {
+            'timestamp': '',
+            'type': '',
+            'message': line
+        }
 
 
 def filter_errors(log_entries):
     """Takes a list of parsed log entries and returns only those with type 'ERROR'."""
-    pass #TODO
+    return [entry for entry in log_entries if entry.get('type') == 'ERROR']
 
 
 def main():
